@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ Tự động sinh ra Demon
+ */
 public class AutoControlDemon : MonoBehaviour
 {
     public GameObject demon;
@@ -14,7 +16,6 @@ public class AutoControlDemon : MonoBehaviour
     private void Start()
     {
         createDemon();
-        spawnTime = 0;
         isDemonDied = false;
     }
 
@@ -27,7 +28,6 @@ public class AutoControlDemon : MonoBehaviour
             if (spawnTime <= 0)
             { // hết thời gian đợi
                 createDemon(); // hồi sinh demon
-                spawnTime = Random.Range(2, 5); // Tạo lại thời gian đợi
             }
         }
     }
@@ -35,12 +35,13 @@ public class AutoControlDemon : MonoBehaviour
     // Tạo demon mới
     public void createDemon()
     {
-        Vector2 demonPosition = new Vector2(Random.Range(-10, 50), Random.Range(1, 3));
+        Vector2 demonPosition = new Vector2(Random.Range(1, 20), Random.Range(1, 3));
         if (demon)
         {
             Instantiate(demon, demonPosition, Quaternion.identity); // tạo ra 1 demon ở vị trí demonPosition
             Debug.Log("Demon da duoc tao ra");
             this.isDemonDied = false; // demon còn sống
+            spawnTime = Random.Range(2, 5); // Tạo lại thời gian đợi
         }
     }
 
